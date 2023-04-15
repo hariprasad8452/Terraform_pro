@@ -14,6 +14,8 @@ bucket = "harry452"
 resource "aws_instance" "three" {
 ami = "ami-069aabeee6f53e7bf"
 instance_type = "t2.micro"
+vpc_security_group_ids = [aws_security_group.harrysg.id]
+availability_zone = "us-east-1a"
 user_data       = <<EOF
 #!/bin/bash
 sudo -i
@@ -25,4 +27,27 @@ EOF
 tags = {
  Name = "HARRY"
 }
+}
+resource "aws_security_group" "harrysg" {
+  name = "some"
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 }
