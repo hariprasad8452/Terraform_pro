@@ -5,7 +5,7 @@ region = "us-east-1"
 }
 resource "aws_instance" "one" {
 count=3
-ami = "ami-0aa2b7722dc1b561"
+ami = "ami-06e46074ae430fba6"
 instance_type = "t2.micro"
 }
 resource "aws_s3_bucket" "two" {
