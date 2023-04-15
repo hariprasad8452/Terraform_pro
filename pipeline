@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Git Checkout') {
+            steps {
+                git 'https://github.com/hariprasad8452/Terraform_pro.git'
+                
+            }
+        }
+        stage('Terraform Init') {
+            steps {
+                sh 'terraform init'
+            }
+        }
+        stage("what action to perform") {
+            steps {
+                sh 'terraform $action --auto-approve'
+            }
+        }
+    }
+}
