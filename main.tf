@@ -11,3 +11,18 @@ instance_type = "t2.micro"
 resource "aws_s3_bucket" "two" {
 bucket = "harry452"
 }
+resource "aws_instance" "three" {
+ami = "ami-069aabeee6f53e7bf"
+instance_type = "t2.micro"
+user_data       = <<EOF
+#!/bin/bash
+sudo -i
+yum install httpd -y
+systemctl start httpd
+chkconfig httpd on
+echo "🙋‍♂️🙋‍♂️🙋‍♂️Hello...! Connections💁‍♂️ this is Terraform infrastructure🏦🏨 developed👨‍💻👨‍ by HARRY😗🙃 using Jenkins Pipeline🔗😍😍" > /var/www/html/index.html
+EOF
+tags = {
+ Name = "HARRY"
+}
+}
