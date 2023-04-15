@@ -7,5 +7,5 @@ ami = "ami-0aa2b7722dc1b561"
 instance_type = "t2.micro"
 }
 resource "aws_s3_bucket" "two" {
-name = "harry452"
+bucket = "harry452"
 }
